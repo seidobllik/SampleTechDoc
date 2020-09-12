@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Sample Tech Document</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+<nav id="navbar">
+  <header>Quick and Dirty SQL</header>
+  <ul id="navbar-links">
+    <li><a href="#intro" class="nav-link">Intro</a></li>
+    <li><a href="#create_table" class="nav-link">Create Table</a></li>
+    <li><a href="#insert_rows" class="nav-link">Insert Rows</a></li>
+    <li><a href="#select" class="nav-link">Select</a></li>
+    <li><a href="#where" class="nav-link">Where</a></li>
+    <li><a href="#and_or" class="nav-link">And Or</a></li>
+    <li><a href="#in_like_between" class="nav-link">In Like Between</a></li>
+  </ul>
+</nav>
+
+<main id="main-doc">
+  <section id="intro" class="main-section">
+    <header class="section-header">Intro</header>
+    <p>Every software developer should be familiar with SQL. As a younger developer, it was the missing peice that was not covered or even mentioned in entry level programming courses. I wasn't exposed to SQL until I was in a professional environment which relied heavily on large enterprise databases.</p>
+    <p>Below you will find a basic overview of SQL and how to use many of its capabilities.</p>
+  </section>
+  <section id="create_table" class="main-section">
+    <header class="section-header">Create Table</header>
+    <p>When creating new tables in SQL the <code>CREATE TABLE</code> statement is called. It expects as it's arguments all the columns we want in the table, as well as the their data types.</p>
+    <p>Here we are creating a simple table called months. It consists of 3 columns:</p>
+    <ul>
+      <li>id - The number of the month in the calendar year (integer).</li>
+      <li>name - Name of the month (string, maximum of 10 characters).</li>
+      <li>days - The number of days in that month (integer).</li>
+    </ul>
+    <p>And this is how the respective SQL looks like:</p>
+    <code>CREATE TABLE months (id int, name varchar(10), days int);</code>
+    <p>Also when creating tables, it's advisable to add a primary key to one of the columns. It will help keep entries unique and will speed up select queries.</p>
+  </section>
+  <section id="insert_rows" class="main-section">
+    <header class="section-header">Insert Rows</header>
+    <p>Now let's populate months with a few rows of information. Adding entries to a table is done via the INSERT statement. There are two different ways to use it:</p>
+    <p>The first way does not specify the column names where the data will be inserted, it only expects the values and leaves it up to the developer to provide all the data in the correct order.</p>
+    <code>INSERT INTO months VALUES (1,'January',31);</code>
+    <p>The above is shorter, but there is a major issue - if we add additional columns in the future, the query will break. The preferred way to write this is to include the columns:</p>
+    <code>INSERT INTO months (id,name,days) VALUES (2,'February',29);</code>
+    <p></p>
+  </section>
+  <section id="select" class="main-section">
+    <header class="section-header">Select</header>
+    <p>Select queries are our best friend when we want to fetch data from the database. They are used all the time so this lesson is going to spend a lot of time covering them.</p>
+    <p>The most simple <code>SELECT</code> example would be this query, which will return all the columns and rows from the characters table:</p>
+    <code>SELECT * FROM "characters"</code>
+    <p>The asterisk (*) means that we want to grab all of the columns, without excluding anything. Since SQL databases usually consist of more then one table, the <code>FROM</code> keyword is required to specify which table we want to look in.</p>
+    <p>Sometimes we don't want all of the columns in a table. SQL allows us to choose and get only the ones we need: instead of putting the asterisk (*), we write the names of the desired columns.</p>
+    <code>SELECT name, weapon FROM "characters"</code>
+    <p>Also, in many cases we want the results be sorted in a certain way. In SQL we do this with <code>ORDER BY</code>. It can take an optional modifier - ASC (default) or DESC for sorting direction:</p>
+  </section>
+  <section id="where" class="main-section">
+    <header class="section-header">Where</header>
+    <p>You learned how to select only specific columns, but what if only certain rows need to be acquired. To the rescue here comes the <code>WHERE</code> clause, allowing us to filter data depending on a condition.</p>
+    <p>In this query we select only those entries from the <b>characters</b> table, who use a <b>pistol</b> to fight baddies.</p>
+    <code>SELECT *<br>FROM "characters"<br>WHERE weapon = "pistol";</code>
+    <p></p>
+  </section>
+  <section id="and_or" class="main-section">
+    <header class="section-header">And Or</header>
+    <p><code>WHERE</code> conditions can be made as specific as you like, with the help of the logical operators (<code>AND</code>,<code>OR</code>) and math-like comparisons (=,<,>,<=,>=,<>).</p>
+    <p>Here we have a table containing the top 4 most sold albums of all time. Let's select those of them that are classified as <b>rock</b> and have sold <b>under 50 million copies</b>. This can easily be done by placing the <code>AND</code> operator between the two statements.</p>
+    <code>SELECT * <br>FROM albums <br>WHERE genre = 'rock' AND sales_in_millions <= 50 
+<br>ORDER BY released</code>
+      <p></p>
+  </section>
+  <section id="in_like_between" class="main-section">
+    <header class="section-header">In Like Between</header>
+    <p><code>WHERE</code> statements also support a few special commands, allowing a quick way to check commonly used queries. They are:</p>
+    <ul>
+      <li><code>IN</code> - compares the column to multiple possible values, resolves true if it matches at least one</li>
+      <li><code>BETWEEN</code> - checks if a value is within a range</li>
+      <li><code>LIKE</code> - searches for a specific pattern</li>
+    </ul>
+    <p>For example if we want to do a query selecting the pop and soul albums from our table, we can use <code>IN("value1","value2")</code>.</p>
+    <code>SELECT * FROM albums WHERE genre IN ('pop','soul');
+</code>
+    <p>If we want to get all the albums released between 1975 and 1985 we would write:</p>
+    <code>SELECT * FROM albums WHERE released BETWEEN 1975 AND 1985;</code>
+  </section>
+</main>
+<!-- partial -->
+  
+</body>
+</html>

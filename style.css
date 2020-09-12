@@ -1,0 +1,94 @@
+html {
+  font-size: 10px;
+  font-family: arial, sans-serif;
+}
+
+header {
+  font-size: 3rem;
+  border-bottom: .1rem solid black;
+}
+
+.section-header {
+  margin-left: -2rem;
+}
+
+p, li {
+  font-size: 1.5rem;
+}
+
+code {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: rgba(0, 0, 0, .1);
+}
+
+#navbar {
+  position: fixed;
+  padding: 1rem 3rem 1rem 3rem;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  border-right: 3px solid darkgray;
+  margin: 0;
+}
+
+#navbar-links {
+  line-height: 3rem;
+  height: 75%;
+  overflow-y: auto;
+}
+
+#navbar-links a {
+  color: black;
+  font-size: 1.75rem;
+  text-decoration: none;
+}
+
+#navbar-links li {
+  margin-left: -3rem;
+  border-top: .1rem solid black;
+  margin-bottom: -.1rem;
+  padding: .2rem;
+  list-style: none;
+}
+
+#navbar-links li:hover {
+  background: black;
+}
+
+#navbar-links li:hover a {
+  color: white;
+}
+
+#main-doc {
+  margin-left: 40rem;
+}
+
+@media (max-width: 820px) {
+  #navbar {
+    position: absolute;
+    top: 0;
+    height: 15rem;
+    width: 95%;
+    border-bottom: 3px solid darkgray;
+    border-right: none;
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  #main-doc {
+    margin-left: 2rem;
+    margin-top: 18rem;
+  }
+  
+  header {
+    font-size: 2rem;
+  }
+  
+  #navbar-links a {
+    color: black;
+    font-size: 1.5rem;
+  }
+
+}
